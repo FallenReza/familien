@@ -17,6 +17,9 @@
 
         body {
             font-family: 'Inter', "Noto Sans", sans-serif;
+            background-image: url("{{ asset('asset/gedung.jpg') }}");
+            background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
@@ -81,9 +84,9 @@
                 </div>
             </form>
                 <p class="text-center text-sm text-slate-500">
-                    Need an account? <a
+                    Don't Have Account? <a
                         class="font-medium text-[var(--primary-color)] hover:text-[var(--primary-color-hover)]"
-                        href="{{ route('register.form') }}">Contact Administrator</a>
+                        href="{{ route('register.form') }}">Sign Up Here</a>
                 </p>
         </div>
     </div>

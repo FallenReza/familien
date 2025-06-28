@@ -8,6 +8,8 @@
     <title>Familien </title>
     <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    {{-- Tambahkan script Alpine.js --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style type="text/tailwindcss">
         :root {
             --primary-color: #dad740;
@@ -84,74 +86,59 @@
 <body class="bg-gray-50">
     <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
-            <header
-                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)] bg-white px-6 lg:px-10 py-4 shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="size-6 text-[var(--primary-color)]">
-                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z"
-                                fill="currentColor" fill-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <h2 class="text-[var(--text-primary)] text-xl font-semibold leading-tight tracking-[-0.015em]">
-                        Familien</h2>
-                </div>
-                <nav class="hidden lg:flex items-center gap-8">
-                    <a class="nav-link-active text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal"
-                        href="#">Dashboard</a>
-                    <a class="text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal" href="#">Units</a>
-                    <a class="text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal"
-                        href="#">Maintenance</a>
-                    <a class="text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal"
-                        href="#">Reports</a>
-                </nav>
-                <div class="flex items-center gap-4">
-                    <button
-                        class="flex items-center justify-center rounded-full h-10 w-10 hover:bg-[var(--secondary-color)] text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors">
-                        <span class="sr-only">Notifications</span>
-                        <div data-icon="Bell" data-size="24px" data-weight="regular">
-                            <svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z">
-                                </path>
-                            </svg>
-                        </div>
-                    </button>
-                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-transparent hover:border-[var(--primary-color)] transition-all"
-                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA40AyJ172bGR6Zg2nnPFbyLw-IBEftL81JPxYwOhiB8RDUhBWSrvEpSgkyWb6YTncyeXgSYfMFNFFNDA2qwNLsrhzwWHh6Bs7gC6ql7lYhWNy4P5KjSMIUW2wFleA08nFt0GUS5GT6UQ2gWvvPUHnhK6Zr5q2RGrouA5BLChc7VQT59gV3-h0eGL-q1WVH--7hTnnSVhzBGM530KfbOeWHk9RxKCLnTU90q2pT6okJCg99iFAo3UqG5zLwq26n4UcUFtwy4lDDhDfR");'>
-                    </div>
-                    <button class="lg:hidden text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
-                        <svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-            </header>
+            
+            @include('partials.header')  {{-- <-- Jauh lebih rapi --}}
+
             <main class="px-6 lg:px-10 flex flex-1 justify-center py-8">
                 <div class="layout-content-container flex flex-col w-full max-w-6xl">
                     @if(session('success'))
-                    <div class="mb-4 p-4 bg-green-100 text-green-700 rounded">
-                        {{ session('success') }}
-                    </div>
-                    @endif
+                        <div class="mb-4 p-4 bg-green-100 text-green-700 rounded">
+                            {{ session('success') }}
+                        </div>
+            @endif
+
+                    {{-- Judul Halaman & Tombol Add New Unit --}}
+
                     <div class="flex flex-wrap items-center justify-between gap-4 mb-6 px-1">
                         <h1 class="text-[var(--text-primary)] text-3xl font-bold leading-tight">Apartment Units</h1>
-                        <button
-                            onclick="document.getElementById('addUnitModal').classList.remove('hidden')"
-                            class="action-button flex items-center justify-center gap-2 rounded-lg h-10 px-5 text-sm font-medium leading-normal shadow-sm transition-colors">
-                            <svg fill="currentColor" height="18px" viewBox="0 0 256 256" width="18px"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z">
-                                </path>
-                            </svg>
-                            <span class="truncate">Add New Unit</span>
-                        </button>
+                            <div x-data="{ open: false }" class="relative">
+                                <button onclick="document.getElementById('addUnitModal').classList.remove('hidden')"
+                                    class="action-button flex items-center justify-center gap-2 rounded-lg h-10 px-5 text-sm font-medium leading-normal shadow-sm transition-colors">
+                                    <svg fill="currentColor" height="18px" viewBox="0 0 256 256" width="18px" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                                    </svg>
+                                    <span class="truncate">Add New Unit</span>
+                                </button>
+                            </div>
                     </div>
+
+                    {{-- TAMBAHKAN BLOK KODE INI UNTUK FILTER --}}
+        
+                    <div class="flex items-center gap-x-2 mb-6 px-1">
+                        <a href="{{ route('dashboard') }}" 
+                        class="px-3 py-1.5 text-sm font-medium rounded-lg transition-colors
+                                {{ !request('status') ? 'bg-gray-800 text-white shadow' : 'bg-white text-gray-600 hover:bg-gray-100' }}">
+                            All
+                        </a>
+                        <a href="{{ route('dashboard', ['status' => 'available']) }}"
+                        class="px-3 py-1.5 text-sm font-medium rounded-lg transition-colors
+                                {{ request('status') == 'available' ? 'bg-green-600 text-white shadow' : 'bg-white text-gray-600 hover:bg-gray-100' }}">
+                            Available
+                        </a>
+                        <a href="{{ route('dashboard', ['status' => 'occupied']) }}"
+                        class="px-3 py-1.5 text-sm font-medium rounded-lg transition-colors
+                                {{ request('status') == 'occupied' ? 'bg-red-600 text-white shadow' : 'bg-white text-gray-600 hover:bg-gray-100' }}">
+                            Occupied
+                        </a>
+                        <a href="{{ route('dashboard', ['status' => 'maintenance']) }}"
+                        class="px-3 py-1.5 text-sm font-medium rounded-lg transition-colors
+                                {{ request('status') == 'maintenance' ? 'bg-yellow-500 text-white shadow' : 'bg-white text-gray-600 hover:bg-gray-100' }}">
+                            Maintenance
+                        </a>
+                    </div>
+
+                    {{-- FORM PENCARIAN --}}
+
                     <form method="GET" action="{{ route('dashboard') }}" class="mb-6 px-1">
                         <label class="flex flex-col min-w-40 h-12 w-full max-w-md">
                             <div
@@ -211,23 +198,23 @@
                                                 {{ ucfirst($unit->status) }}
                                             </span>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="{{ route('units.show', $unit->id) }}" class="text-blue-600 hover:text-blue-900 text-sm font-medium mr-2">
-                                                View
-                                            </a>
-                                            <button
-                                                onclick="openEditModal({{ $unit->id }}, '{{ $unit->unit_number }}', {{ $unit->floor }}, '{{ $unit->tower }}', '{{ $unit->status }}')"
-                                                class="text-indigo-600 hover:text-indigo-900 text-sm font-medium mr-2">
-                                                Edit
-                                            </button>
-                                            <form method="POST" action="{{ route('units.delete', $unit->id) }}" class="inline" onsubmit="return confirm('Are you sure you want to delete this unit?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-red-600 hover:text-red-900 text-sm font-medium">
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            
+                                                {{-- 1. Div Flexbox sebagai Container Utama Aksi --}}
+                                                <div class="flex items-center justify-end gap-x-3">
+
+                                                    {{-- 2. Tombol View (sudah diperbaiki di dalam <a>) --}}
+                                                    <a href="{{ route('units.show', $unit->id) }}" class="transition-opacity hover:opacity-75">
+                                                        <img src="{{ asset('asset/view.png') }}" alt="View Unit" class="h-5 w-5">
+                                                    </a>
+
+                                                    {{-- 3. Tombol Edit --}}
+                                                    <button onclick="openEditModal({{ $unit->id }}, '{{ $unit->unit_number }}', {{ $unit->floor }}, '{{ $unit->tower }}', '{{ $unit->status }}')" class="transition-opacity hover:opacity-75">
+                                                        <img src="{{ asset('asset/edit.png') }}" alt="Edit Unit" class="h-5 w-5">
+                                                    </button>
+
+                                                </div>
+                                            </td>
                                     </tr>
                                     @empty
                                     <tr>

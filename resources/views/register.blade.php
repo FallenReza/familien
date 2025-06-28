@@ -18,6 +18,10 @@
 
         body {
             font-family: 'Inter', "Noto Sans", sans-serif;
+            background-image: url("{{ asset('asset/gedung.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
     </style>
 </head>

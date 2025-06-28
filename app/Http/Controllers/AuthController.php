@@ -117,4 +117,15 @@ class AuthController extends Controller
             ->get();
         return view('units.show', compact('unit', 'maintenanceReports'));
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Proses logout pengguna
+
+        $request->session()->invalidate(); // Membuat session tidak valid
+
+        $request->session()->regenerateToken(); // Membuat token baru
+
+        return redirect('/'); // Arahkan ke halaman utama atau login
+    }
 }
